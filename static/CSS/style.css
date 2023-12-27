@@ -1,0 +1,81 @@
+/* меню страниц */
+.menu {
+background-color: #f1f1f1;
+box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.4);
+width: 100%;
+}
+.menu li {
+display: inline-block;
+vertical-align: top;
+padding: 10px;
+color: #6f6d6d;
+}
+.menu a {
+text-decoration: none;
+color: #6f6d6d;
+}
+.menu li:hover {
+background-color: #f87777;
+cursor: pointer;
+color: #f8f8f8;
+}
+.menu ul {
+padding: 0px;
+}
+.active{
+background-color: #f87777;
+color: #f8f8f8;
+}
+.active a:visited{
+color: #f8f8f8;
+}
+.menu a:hover{
+color: #f8f8f8;
+}
+.block {
+padding: 10px 20px;
+}
+table{
+    margin: 20px 5px;
+	border-collapse:collapse;
+}
+table td, th{
+	padding: 5px 10px;
+	border: thin solid grey;
+}
+table th {
+    background: LightGray;
+}
+.line {
+float: left;
+margin-right: 5px;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.container div {
+    margin: 5px;
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.line {
+    display:flex;
+    flex-direction: row;
+    align-items:stretch;
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.3);
+    margin: 5px;
+    padding: 10px;
+    height: 100%;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 10px;
+}
+.elem {
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    width: 300px;
+}
+

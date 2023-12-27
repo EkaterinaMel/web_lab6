@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="\static\CSS\style.css" />
+    <title> Новый читатель </title>
+</head>
+<body>
+<div class="menu">
+    <ul>
+        <li class ="active"><a href={{url_for("index")}}>Поиск книг</a></li>
+
+    </ul>
+</div>
+<div class="line">
+    <form action="{{url_for('search')}}" method ="get">
+        <p>
+    <details open="open">
+        <summary>Жанр</summary>
+        {% for i in range(0, list_genre|length) %}
+        <input type = checkbox name=genre[] value={{list_genre.loc[i,"genre_id"]}}>
+        {{list_genre.loc[i, "genre_name"]}} ({{list_genre.loc[i, "amount"]}})<br>
+        {% endfor %}
+    </details>
+        </p>
+        <p>
+    <details open="open">
+        <summary>Автор</summary>
+        {% for i in range(0, list_author|length) %}
+        <input type = checkbox name=author[] value={{list_author.loc[i,"author_id"]}}>
+        {{list_author.loc[i, "author_name"]}} ({{list_author.loc[i, "amount"]}})<br>
+        {% endfor %}
+    </details>
+        </p>
+        <p>
+    <details open="open">
+        <summary>Издательство</summary>
+        {% for i in range(0, list_publisher|length) %}
+        <input type = checkbox name=publisher[] value={{list_publisher.loc[i,"publisher_id"]}}>
+        {{list_publisher.loc[i, "publisher_name"]}} ({{list_publisher.loc[i, "amount"]}})<br>
+        {% endfor %}
+    </details>
+        </p>
+        <button name="search" value='1'>Найти</button>
+        <button name="clear" value='0'>Очистить</button>
+    </form>
+</div>
+<div>
+    <form action="{{url_for('index')}}" method ="get">
+        <button name="cancel" value='0'>Не выбирать книгу</button>
+    </form>
+    {% if user_genre|length != 0 %}
+    Жанры:
+    {% for i in user_genre %}
+    {{list_genre.loc[int(i)-1, "genre_name"]}},
+    {% endfor %}
+    {% endif %}
+    {% if user_author|length != 0 %}
+    Авторы:
+    {% for i in user_author %}
+    {{list_author.loc[int(i)-1, "author_name"]}},
+    {% endfor %}
+    {% endif %}
+    {% if user_publisher|length != 0 %}
+    Издательства:
+    {% for i in user_publisher %}
+    {{list_publisher.loc[int(i)-1, "publisher_name"]}},
+    {% endfor %}
+    {% endif %}
+</div>
+<form action="{{url_for('index')}}" method ="get">
+<div class="container">
+    {% for i in range(books|length) %}
+    <div class="elem">
+        <!-- выводим значение каждого столбца -->
+        {% for name in books.dtypes.index %}
+        {{name}}: {{ books.loc[i, name] }} <br>
+        {% endfor %}
+        {% if books.loc[i, "Количество"] == 0 %}
+        <p>
+            <button name="take" value={{books.loc[i,"book_id"]}} disabled>Выбрать</button>
+        </p>
+        {% else %}
+        <p>
+            <button name="take" value={{books.loc[i,"book_id"]}}>Выбрать</button>
+        </p>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+</form>
+</body>
+</html>
